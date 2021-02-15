@@ -29,7 +29,7 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => Yii::$app->name,
+        'brandLabel' => common\models\Parametrodato::find()->where(['id' => 1])->one()->nombre_fantasia . ' - Back',//Yii::$app->name,
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
@@ -41,6 +41,36 @@ AppAsset::register($this);
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Iniciar Sesión', 'url' => ['/site/login']];
     } else {
+        $menuItems[] = ['label' => 'Parametros', 'url' => ['product/index'], 'items' => [
+            ['label' => 'Datos Propios', 'url' => ['parametrodato/index']],
+        ]];
+        $menuItems[] = ['label' => 'Presupuesto', 'url' => ['product/index'], 'items' => [
+            ['label' => 'Presupuesto', 'url' => ['presupuesto/index']],
+            ['label' => 'Presupuesto Detalle', 'url' => ['presupuestodetalle/index']],
+        ]];
+        $menuItems[] = ['label' => 'Productos y Servicio', 'items' => [
+            ['label' => 'Producto', 'url' => ['producto/index']],
+            ['label' => 'Producto Precio', 'url' => ['productohistorialprecio/index']],
+            ['label' => 'Servicio', 'url' => ['servicio/index']],
+            ['label' => 'Servicio Precio', 'url' => ['serviciohistorialprecio/index']],
+        ]];
+
+        $menuItems[] = ['label' => 'Proveedor', 'items' => [
+            ['label' => 'Proveedor', 'url' => ['proveedor/index']],
+            ['label' => 'Proveedor Tipo', 'url' => ['proveedortipo/index']],
+            ['label' => 'Proveedor Estado', 'url' => ['proveedorestado/index']],
+        ]];
+        $menuItems[] = ['label' => 'Cliente', 'items' => [
+            ['label' => 'Cliente', 'url' => ['cliente/index']],
+            ['label' => 'Cliente Tipo', 'url' => ['clientetipo/index']],
+            ['label' => 'Cliente Estado', 'url' => ['clienteestado/index']],
+        ]];
+
+        $menuItems[] =['label' => 'Localidades', 'url' => ['product/index'], 'items' => [
+            ['label' => 'Pais', 'url' => ['pais/index']],
+            ['label' => 'Provincia', 'url' => ['provincia/index']],
+            ['label' => 'Ciudad', 'url' => ['ciudad/index']],
+        ]];
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
@@ -68,7 +98,7 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?></p>
+        <p class="pull-left">&copy; <?= Html::encode(common\models\Parametrodato::find()->where(['id' => 1])->one()->nombre_fantasia /*Yii::$app->name*/) ?> <?= date('Y') ?></p>
 
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>

@@ -1,15 +1,15 @@
 <?php
 
 /* @var $this yii\web\View */
-
-$this->title = 'Mi Aplicación';
+$fantasia = common\models\Parametrodato::find()->where(['id' => 1])->one()->nombre_fantasia;
+$this->title = $fantasia .' - Inicio';
 ?>
 <div class="site-index">
 
     <div class="jumbotron">
-        <h1>Congratulations!</h1>
+        <h1>Bienvenido a <?php echo $fantasia ?> Sistema</h1>
 
-        <p class="lead">You have successfully created your Yii-powered application.</p>
+        <p class="lead">Sistema de Gestion de tu empresa.</p>
 
         <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
     </div>
